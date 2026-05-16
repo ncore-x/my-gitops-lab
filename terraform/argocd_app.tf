@@ -8,9 +8,17 @@ resource "kubernetes_manifest" "nginx_app" {
       namespace = "argocd"
     }
     spec = {
+      ignoreDifferences = [
+    {
+      group   = "apps"
+      kind    = "Deployment"
+      jsonPointers = [
+        "/spec/template/spec/containers/0/resources",
+        "/spec/template/spec/volumes",
+      ]
       project = "default"
       source = {
-        repoURL        = "https://github.com/ВАШ_АККАУНТ/my-gitops-lab"
+        repoURL        = "https://github.com/ncore-x/my-gitops-lab"
         targetRevision = "HEAD"
         path           = "k8s/apps/nginx"
       }
