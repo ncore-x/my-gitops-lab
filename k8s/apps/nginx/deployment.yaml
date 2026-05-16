@@ -4,7 +4,7 @@ metadata:
   name: nginx
   namespace: apps
 spec:
-  relicaset: 2
+  replicas: 3
   selector:
     matchLabels:
       app: nginx
